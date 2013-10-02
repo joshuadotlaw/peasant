@@ -14,7 +14,7 @@ var Jesse = new function() {
       console.log('Big cookie clicker stopped.');
     }
 
-  }
+  };
 
   var startBigCookieClicker = function(interval) {
 
@@ -23,10 +23,12 @@ var Jesse = new function() {
     stopBigCookieClicker();
 
     bigCookieClicker = setInterval(function() {
-      bigCookieEl.click()
+      bigCookieEl.click();
     }, interval);
 
-  }
+    console.log('Big cookie clicker started: ' + interval + 'ms interval.');
+
+  };
 
   var stopGoldenCookieClicker = function() {
 
@@ -36,7 +38,7 @@ var Jesse = new function() {
       console.log('Golden cookie clicker stopped.');
     }
 
-  }
+  };
 
   var startGoldenCookieClicker = function(interval) {
 
@@ -50,7 +52,9 @@ var Jesse = new function() {
       }
     }, interval);
 
-  }
+    console.log('Golden cookie clicker started.');
+
+  };
 
   this.bake = function(interval) {
 
@@ -60,10 +64,9 @@ var Jesse = new function() {
       stopBigCookieClicker();
     } else {
       startBigCookieClicker(interval);
-      console.log('Big cookie clicker started: ' + interval 'ms interval.');
     }
 
-  }
+  };
 
   this.hunt = function() {
 
@@ -73,6 +76,6 @@ var Jesse = new function() {
       startGoldenCookieClicker();
     }
 
-  }
+  };
 
 }
