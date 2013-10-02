@@ -1,34 +1,78 @@
-var bigCookieEl = document.getElementById('bigCookie');
-var goldenCookieEl = document.getElementById('goldenCookie');
-
-var clicker = 0;
-var looper = 0;
-
 var Jesse = new function() {
 
-  this.bake = function(interval) {
-    interval = typeof interval !== 'undefined' ? interval : 2;
-    if (clicker > 0) {
-      clearInterval(clicker);
-      if (interval === 0) {
-        console.log('Jesse has stopped baking.');
+  var bigCookieEl = document.getElementById('bigCookie');
+  var goldenCookieEl = document.getElementById('goldenCookie');
+
+  var bigCookieClicker = 0;
+  var goldenCookieClicker = 0;
+
+  var stopBigCookieClicker = function() {
+
+    if (bigCookieClicker > 0) {
+      clearInterval(bigCookieClicker);
+      bigCookieClicker = 0;
+      console.log('Big cookie clicker stopped.');
+    }
+
+  }
+
+  var startBigCookieClicker = function(interval) {
+
+    interval = typeof interval !== 'undefined' ? interval : 5;
+
+    stopBigCookieClicker();
+
+    bigCookieClicker = setInterval(function() {
+      bigCookieEl.click()
+    }, interval);
+
+  }
+
+  var stopGoldenCookieClicker = function() {
+
+    if (goldenCookieClicker > 0) {
+      clearInterval(goldenCookieClicker);
+      goldenCookieClicker = 0;
+      console.log('Golden cookie clicker stopped.');
+    }
+
+  }
+
+  var startGoldenCookieClicker = function(interval) {
+
+    interval = typeof interval !== 'undefined' ? interval : 3000;
+
+    stopGoldenCookieClicker();
+
+    goldenCookieClicker = setInterval(function() {
+      if (Game.goldenCookie.life > 0) {
+        goldenCookieEl.click();
       }
-    }
-    if (interval > 0) {
-      clicker = setInterval(function(){bigCookieEl.click()}, interval);
-      console.log('Jesse has started baking. (' + interval + 'ms interval)');
-    }
-  };
+    }, interval);
 
-  this.snagThoseSpecialCookies = function() {
-    if (looper > 0) {
-      clearInterval(looper);
-      looper = 0;
-      console.log('Jesse has stopped snagging those "special" cookies.');
+  }
+
+  this.bake = function(interval) {
+
+    interval = typeof interval !== 'undefined' ? interval : 5;
+
+    if (interval === 0) {
+      stopBigCookieClicker();
     } else {
-      looper = setInterval(function(){goldenCookieEl.click()}, 3000);
-      console.log('Jesse has started snagging those "special" cookies.');
+      startBigCookieClicker(interval);
+      console.log('Big cookie clicker started: ' + interval 'ms interval.');
     }
-  };
 
-};
+  }
+
+  this.hunt = function() {
+
+    if (goldenCookieClicker > 0) {
+      stopGoldenCookieClicker();
+    } else {
+      startGoldenCookieClicker();
+    }
+
+  }
+
+}
