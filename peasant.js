@@ -1,4 +1,4 @@
-var Jesse = new function() {
+var Peasant = new function() {
 
   var bigCookieEl = document.getElementById('bigCookie');
   var goldenCookieEl = document.getElementById('goldenCookie');
